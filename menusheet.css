@@ -1,7 +1,7 @@
 
 p {font-size : 15px; font-family: 微软雅黑;color: white; line-height:70px;text-align:center;margin : 0 ;outline-width:0px;}
 
-p.chosen{background-color: #2AA0FF;}
+p:active {background-color: #2AA0FF;}
 
 a{text-decoration:none;}
 
