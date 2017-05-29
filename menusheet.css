@@ -1,4 +1,26 @@
-
+div.menu_layout{
+	display: inline-block; 
+	width: 20%; 
+	height: 100%; 
+	float: left; 
+	background-color: DodgerBlue; 
+	position:fixed;
+}
+.content{
+	display: inline-block; 
+	width: 80%; 
+	float: right;
+	background-color:whiteSmoke;
+}
+img.avatar{
+	width:80px ;
+	height: 80px; 
+	border-radius: 50%; 
+	overflow: hidden; 
+	border-style: solid; 
+	border-width: 3px; 
+	border-color: whiteSmoke;
+}
 p.menu {
 	font-size: 15px; 
 	font-family: 微软雅黑;
@@ -8,21 +30,13 @@ p.menu {
 	margin : 0 ; 
 	outline-width:0px;
 }
+p.menu.chosen {
+	background-color: #2AA0FF;
+}
 
 .icon {
     width: 10px; 
     margin: 0px 5px 0px 0px;
-}
-
-p.chosen {
-	font-size : 15px; 
-	font-family: 微软雅黑;
-	color: white; 
-	line-height: 80px;
-	text-align: center;
-	margin: 0 ;
-	outline-width: 0px; 
-	background-color: #2AA0FF;
 }
 
 a{text-decoration:none;}

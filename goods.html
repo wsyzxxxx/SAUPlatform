@@ -5,39 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>goods</title>
     <link rel="stylesheet" type="text/css" href="menusheet.css" />
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
     <style type="text/css">
-        p.notice{
-    	     background-color: white;
-    	     font-family: 微软雅黑；
-    	     font-size: 10px;
-    	     height : 150px;
-    	     padding: 0px;
-    	     margin: 1px 0px;
-        }
         a:hover{text-decoration: none;}
     </style>
 </head>
 
 <body>
-<div style = "display: inline-block; width: 20%; height: 100%; float: left; background-color: DodgerBlue; position:fixed;">
-
+<div class = "menu_layout">
 <div align="center" style="margin: 50px 30px 10px 30px;">
-<a href = "personal.html">
-<p class = menu><img src = "user/小哥哥.jpeg" width = 80px height = 80px style = "border-radius: 50%; overflow: hidden; border-style: solid; border-width: 3px; border-color: whiteSmoke"/>
+<a href = "user.html">
+<p class = menu><img src = "user/小哥哥.jpeg" class = "avatar"/>
 小哥哥</p>
 </a>
 </div>
 <br/>
-<a href="notice.html"><p class = chosen><img class = icon src = "icon/notice.png"/>通知</p></a>
+<a href="notice.html"><p class = menu><img class = icon src = "icon/notice.png"/>通知</p></a>
 <a href="work.html"><p class = menu><img class = icon src = "icon/work.png"/>事务</p></a>
-<a href="goods.html"><p class = menu><img class = icon src = "icon/goods.png"/>物资</p></a>
+<a href="goods.html"><p class = "menu chosen"><img class = icon src = "icon/goods.png"/>物资</p></a>
 <a href="bible.html" ><p class = menu><img class = icon src = "icon/bible.png"/>宝典</p></a>
 <a href="wonder.html"><p class = menu><img class = icon src = "icon/wonder.png"/>知乎</p></a>
-<a href="lstFd.html"><p class = menu><img class = icon src = "icon/lstfd.png"/>寻物</p></a>
+<a href="lstfd.html"><p class = menu><img class = icon src = "icon/lstfd.png"/>寻物</p></a>
 </div>
 
-<div style=" display: inline-block; width: 80%; float: right;background-color:whiteSmoke">
+<div class = "content">
 <div align="center">
 <form action = "search_in_bible">
 <div style="width: 400px; margin: 30px;">
@@ -48,27 +39,23 @@
         </span>
     </div><!-- /input-group -->
 </div>
-
 </form>
 </div>
 
-<div>
-<p class = notice>
-通知1
-</p>
-<p class = notice>
-通知2
-</p >
-<p class = notice>
-通知3
-</p>
-<p class = notice>
-通知4
-</p>
-<p class = notice>
-通知5
-</p>
-</div>
+<?php
+echo "connected";
+?>
+
+<?php
+$con = mysql_connect("localhost","sau","strdxgjc");
+if (!$con)
+  {
+  die('Could not connect: ' . mysql_error());
+  }
+else echo "connected";
+// some code
+?>
+
 </div>
 </body>
 
