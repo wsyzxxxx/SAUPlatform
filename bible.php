@@ -3,15 +3,14 @@
 <head>
     <meta charset = "UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>notice</title>
+    <title>bible</title>
     <link rel="stylesheet" type="text/css" href="menusheet.css" />
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <style type="text/css">
-        p.notice{
+        p.bcontent{
     	     background-color: white;
     	     font-family: 微软雅黑；
     	     font-size: 10px;
-    	     height : 150px;
     	     padding: 0px;
     	     margin: 1px 0px;
         }
@@ -22,18 +21,18 @@
 <body>
 <div class = "menu_layout">
 <div align="center" style="margin: 50px 30px 10px 30px;">
-<a href = "user.html">
+<a href = "user.php">
 <p class = menu><img src = "user/小哥哥.jpeg" class = "avatar"/>
 小哥哥</p>
 </a>
 </div>
 <br/>
-<a href="notice.html"><p class = "menu chosen"><img class = icon src = "icon/notice.png"/>通知</p></a>
-<a href="work.html"><p class = menu><img class = icon src = "icon/work.png"/>事务</p></a>
-<a href="goods.html"><p class = menu><img class = icon src = "icon/goods.png"/>物资</p></a>
-<a href="bible.html" ><p class = menu><img class = icon src = "icon/bible.png"/>宝典</p></a>
-<a href="wonder.html"><p class = menu><img class = icon src = "icon/wonder.png"/>知乎</p></a>
-<a href="lstfd.html"><p class = menu><img class = icon src = "icon/lstfd.png"/>寻物</p></a>
+<a href="notice.php"><p class = menu><img class = icon src = "icon/notice.png"/>通知</p></a>
+<a href="work.php"><p class = menu><img class = icon src = "icon/work.png"/>事务</p></a>
+<a href="goods.php"><p class = menu><img class = icon src = "icon/goods.png"/>物资</p></a>
+<a href="bible.php" ><p class = "menu chosen"><img class = icon src = "icon/bible.png"/>宝典</p></a>
+<a href="wonder.php"><p class = menu><img class = icon src = "icon/wonder.png"/>知乎</p></a>
+<a href="lstfd.php"><p class = menu><img class = icon src = "icon/lstfd.png"/>寻物</p></a>
 </div>
 
 <div class = "content">
@@ -50,20 +49,17 @@
 </form>
 </div>
 
-<p class = notice>
-通知1
-</p>
-<p class = notice>
-通知2
-</p >
-<p class = notice>
-通知3
-</p>
-<p class = notice>
-通知4
+<p class = bcontent>
+<?php
+$myfile = fopen("bibleContent/t2.txt", "r");
+while(!feof($myfile)) {
+  echo fgets($myfile) . "<br>";
+}
+fclose($myfile);
+?>
 </p>
 
 </div>
 </body>
 
-</html>
+</php>
