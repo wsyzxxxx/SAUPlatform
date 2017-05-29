@@ -1,6 +1,7 @@
 <html>
 <head>
 <title></title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <style type="text/css">
     p{
     	background-color: white;
@@ -19,6 +20,14 @@
 
 <div align = center>
 <form action = "search_in_bible">
+<div class="col-lg-6" style="width: 450px;">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="搜索">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><img src="icon/search.png" height=20px></button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
 <input type = "text" name = key_words placeholder="搜索" style="width: 450px; height: 30px; text-align: center; margin: 30px;border-radius: 15px 0px ; overflow: hidden; border:solid 1px grey">
 <img src="icon/search.png" height = 20px>
 </input>
