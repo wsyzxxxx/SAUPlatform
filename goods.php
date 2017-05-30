@@ -9,24 +9,35 @@
     <style type="text/css">
         a:hover{text-decoration: none;}
         th{
-            padding: 0px 10px;
+            padding: 0rem 2rem;
+            margin: 0rem;
         }
         td{
-            padding: 0px 10px;
+            padding: 0rem 2rem;
+            margin: 0rem;
         }
         .table{
-             background-color: white;
              font-family: 微软雅黑；
-             font-size: 10px;
-             padding: 10px;
-             margin: 1px 0px;
+             font-size: 1rem;
+             padding: 0rem;
+             margin: 1rem 0rem;
+        }
+        button.btn.btn-default.search{
+            text-align: center; 
+            width: 29rem; 
+            height: 3rem;
+            background-color: DodgerBlue; 
+            padding: 0.5rem; 
+            margin: 0.3rem; 
+            color: white;
+            font-size: 1.35rem;
         }
     </style>
 </head>
 
 <body>
 <div class = "menu_layout">
-<div align="center" style="margin: 50px 30px 10px 30px;">
+<div align="center" style="margin: 5rem 3rem 1rem 3rem;">
 <a href = "user.php">
 <p class = menu><img src = "user/小哥哥.jpeg" class = "avatar"/>
 小哥哥</p>
@@ -41,33 +52,44 @@
 <a href="lstfd.php"><p class = menu><img class = icon src = "icon/lstfd.png"/>寻物</p></a>
 </div>
 
-<div class = "content">
-<div align="center">
+<div class = "content" style = "background-color:white;">
+<!--div align="center">
 <form action = "search_in_bible">
-<div style="width: 400px; margin: 30px;">
+<div style="width: 40rem; margin: 3rem;">
     <div class="input-group">
         <input type="text" class="form-control" placeholder="搜索">
         <span class="input-group-btn">
-        <button class="btn btn-default" type="button"><img src="icon/search.png" height=20px></button>
+        <button class="btn btn-default" type="button"><img src="icon/search.png" height=2rem></button>
         </span>
-    </div><!-- /input-group -->
+    </div></input-group>
 </div>
 </form>
-</div>
+</div-->
 
 <div class = table>
-<div align = "center" >
-<div class="input-group" style = "padding: 10px 1%;" >
-<input type="date" class="form-control" placeholder="借出日期" style = "width: 400px; height: 30px; margin-right: 10px;">
-<input type="date" class="form-control" placeholder="归还日期" style = "width: 400px; height: 30px;">
-</div>
-</div>
-<div align = "center" >
-<button type="submit" class="btn btn-default" align = "center" style = "width: 810px; height: 30px ;background-color: DodgerBlue; color: white">查询</button>
-</div>
+<div align = "center">
+
+<div class="input-group" style = "padding: 0.5rem; font-size: 1.2rem;">
+<input type="text" class="form-control" value="借用起止日期" readonly="readonly" style = "background-color: whiteSmoke; border-style: outset; text-align: center; width:29rem;height: 3rem;font-size: 1.3rem"/>
+<input type="date" class="form-control" placeholder="借出日期" style = "text-align: center; width: 30rem; height: 3rem;"/>
+<input type="date" class="form-control" placeholder="归还日期" style = "text-align: center; width: 30rem; height: 3rem;"/>
 </div>
 
-<div class = table>
+<div class="input-group" style = "padding: 0.5rem; margin-bottom: 0.4px">
+<select class="form-control" name = "condition" style = "background-color: whiteSmoke;border-style: outset; padding-left: 11rem; width:29rem;height: 3rem;font-size: 1.3rem;">
+<option value = "gname" style = "background-color: white;">物品名称</option>
+<option value = "variety" style = "background-color: white;">物品种类</option>
+<option value = "belong" style = "background-color: white;">归属部门</option>
+</select>
+<input type="text" class="form-control" placeholder="查询条件" style = "text-align: center; width: 60rem; height: 3rem;"/>
+</div>
+
+<button type="submit" class="btn btn-default search" name = "search_goods" >查询物资</button>
+<button type="submit" class="btn btn-default search" name = "edit_goods">编辑物资</button>
+<button type="submit" class="btn btn-default search" name = "user_borrow">我的借用</button>
+
+</div>
+
 <?php
 define("ACCESS_CODE_TIMEOUT", 300);
 define("ACESS_TOKEN_TIMEOUT", 3600);
@@ -87,8 +109,8 @@ $sql = $dbh->prepare("SELECT * FROM goods");
 $sql->execute();
 $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-echo "<div align = 'center'><table style = 'width: 90%; line-height: 40px; padding: 10px;'>
-<tr style = 'background-color: DodgerBlue; color: white;' >
+echo "<div align = 'center'><table style = 'width: 100%; line-height: 4rem; padding: 1rem; margin:2rem 0rem'>
+<tr style = 'background-color: #AAD0FF;' >
 <th>物资</th>
 <th>种类</th>
 <th>位置</th>
@@ -108,7 +130,8 @@ foreach ($row as $key)
   echo "<td>" . $key['belong'] . "</td>";
   echo "<td>" . $key['total'] . "</td>";
   echo "<td>" . $key['stock'] . "</td>";
-  echo "<td></td>";
+  echo "<td><a href='whatever'><img class = icon src = 'icon/apply.png'>申请</a>
+</td>";
   echo "</tr>";
   $count += 1;
   }
@@ -123,8 +146,6 @@ else echo "connected";
 // some code
 */
 ?>
-
-</div>
 
 </div>
 </body>

@@ -10,33 +10,36 @@ div.menu_layout{
 	display: inline-block; 
 	width: 80%; 
 	float: right;
-	background-color:whiteSmoke;
+	font-size: 1.35rem; 
+	font-family: 微软雅黑;
+	color: black; 
+	line-height:2.4rem; 
 }
 img.avatar{
-	width:80px ;
-	height: 80px; 
+	width:8rem ;
+	height: 8rem; 
 	border-radius: 50%; 
 	overflow: hidden; 
 	border-style: solid; 
-	border-width: 3px; 
+	border-width: 0.3rem; 
 	border-color: whiteSmoke;
 }
 p.menu {
-	font-size: 15px; 
+	font-size: 1.5rem; 
 	font-family: 微软雅黑;
 	color: white; 
-	line-height:80px; 
+	line-height:8rem; 
 	text-align:center;
-	margin : 0 ; 
-	outline-width:0px;
+	margin : 0rem; 
+	outline-width: 0rem;
 }
 p.menu.chosen {
 	background-color: #2AA0FF;
 }
 
 .icon {
-    width: 10px; 
-    margin: 0px 5px 0px 0px;
+    width: 1.2rem; 
+    margin: 0rem 1rem 0.2rem 0rem;
 }
 
 a{text-decoration:none;}

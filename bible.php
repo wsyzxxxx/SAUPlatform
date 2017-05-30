@@ -35,7 +35,7 @@
 <a href="lstfd.php"><p class = menu><img class = icon src = "icon/lstfd.png"/>寻物</p></a>
 </div>
 
-<div class = "content">
+<div class = "content" style = "background-color: whiteSmoke">
 <div align="center">
 <form action = "search_in_bible">
 <div style="width: 400px; margin: 30px;">
