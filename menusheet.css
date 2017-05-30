@@ -1,6 +1,7 @@
 div.menu_layout{
 	display: inline-block; 
 	width: 20%; 
+	min-width: 15srem;
 	height: 100%; 
 	float: left; 
 	background-color: DodgerBlue; 
@@ -9,11 +10,15 @@ div.menu_layout{
 .content{
 	display: inline-block; 
 	width: 80%; 
-	float: right;
+	min-width: 90rem;
+	float: left;
+	clear:both;
 	font-size: 1.35rem; 
 	font-family: 微软雅黑;
+	margin-left: 20%;
 	color: black; 
 	line-height:2.4rem; 
+	position:absolute;
 }
 img.avatar{
 	width:8rem ;

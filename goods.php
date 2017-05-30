@@ -16,12 +16,6 @@
             padding: 0rem 2rem;
             margin: 0rem;
         }
-        .table{
-             font-family: 微软雅黑；
-             font-size: 1rem;
-             padding: 0rem;
-             margin: 1rem 0rem;
-        }
         button.btn.btn-default.search{
             text-align: center; 
             width: 29rem; 
@@ -36,7 +30,8 @@
 </head>
 
 <body>
-<div class = "menu_layout">
+
+<div class = "menu_layout" name = "menu">
 <div align="center" style="margin: 5rem 3rem 1rem 3rem;">
 <a href = "user.php">
 <p class = menu><img src = "user/小哥哥.jpeg" class = "avatar"/>
@@ -53,21 +48,8 @@
 </div>
 
 <div class = "content" style = "background-color:white;">
-<!--div align="center">
-<form action = "search_in_bible">
-<div style="width: 40rem; margin: 3rem;">
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="搜索">
-        <span class="input-group-btn">
-        <button class="btn btn-default" type="button"><img src="icon/search.png" height=2rem></button>
-        </span>
-    </div></input-group>
-</div>
-</form>
-</div-->
 
-<div class = table>
-<div align = "center">
+<div align = "center" style="margin-top: 1rem" >
 
 <div class="input-group" style = "padding: 0.5rem; font-size: 1.2rem;">
 <input type="text" class="form-control" value="借用起止日期" readonly="readonly" style = "background-color: whiteSmoke; border-style: outset; text-align: center; width:29rem;height: 3rem;font-size: 1.3rem"/>
@@ -146,7 +128,6 @@ else echo "connected";
 // some code
 */
 ?>
-
 </div>
 </body>
 
