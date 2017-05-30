@@ -8,11 +8,17 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
     <style type="text/css">
         a:hover{text-decoration: none;}
+        th{
+            padding: 0px 10px;
+        }
+        td{
+            padding: 0px 10px;
+        }
         .table{
              background-color: white;
              font-family: 微软雅黑；
              font-size: 10px;
-             padding: 0px;
+             padding: 10px;
              margin: 1px 0px;
         }
     </style>
@@ -50,6 +56,18 @@
 </div>
 
 <div class = table>
+<div align = "center" >
+<div class="input-group" style = "padding: 10px 1%;" >
+<input type="date" class="form-control" placeholder="借出日期" style = "width: 400px; height: 30px; margin-right: 10px;">
+<input type="date" class="form-control" placeholder="归还日期" style = "width: 400px; height: 30px;">
+</div>
+</div>
+<div align = "center" >
+<button type="submit" class="btn btn-default" align = "center" style = "width: 810px; height: 30px ;background-color: DodgerBlue; color: white">查询</button>
+</div>
+</div>
+
+<div class = table>
 <?php
 define("ACCESS_CODE_TIMEOUT", 300);
 define("ACESS_TOKEN_TIMEOUT", 3600);
@@ -59,7 +77,7 @@ define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_DATABASE', 'sauplatform');
 try {
-    $dbh = new PDO(sprintf('mysql:host=%s;dbname=%s;', DB_SERVER, DB_DATABASE), DB_USERNAME, DB_PASSWORD);
+    $dbh = new PDO(sprintf('mysql:host=%s;dbname=%s;charset=utf8mb4', DB_SERVER, DB_DATABASE), DB_USERNAME, DB_PASSWORD);
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
     echo $e->getMessage();
@@ -69,9 +87,32 @@ $sql = $dbh->prepare("SELECT * FROM goods");
 $sql->execute();
 $row = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($row as $key) {
-    echo $key['gname'];
-}
+echo "<div align = 'center'><table style = 'width: 90%; line-height: 40px; padding: 10px;'>
+<tr style = 'background-color: DodgerBlue; color: white;' >
+<th>物资</th>
+<th>种类</th>
+<th>位置</th>
+<th>归属</th>
+<th>总量</th>
+<th>余量</th>
+<th>借用申请</th>
+</tr>";
+$count = 0;
+foreach ($row as $key)
+  {
+  if($count%2 ==0)echo "<tr bgcolor = #E0F0FF>";
+  else echo "<tr bgcolor = #F8FCFF>";
+  echo "<td>" . $key['gname'] . "</td>";
+  echo "<td>" . $key['variety'] . "</td>";
+  echo "<td>" . $key['position'] . "</td>";
+  echo "<td>" . $key['belong'] . "</td>";
+  echo "<td>" . $key['total'] . "</td>";
+  echo "<td>" . $key['stock'] . "</td>";
+  echo "<td></td>";
+  echo "</tr>";
+  $count += 1;
+  }
+echo "</table></div>";
 /*
 $con = mysql_connect("localhost","sau","strdxgjc");
 if (!$con)
