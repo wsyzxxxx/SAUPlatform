@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> 社享台登录 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <title> 社享台登录 </title>
+    <link rel="shortcut icon" type="image/x-icon" href="icon/logo.png" media="screen" />
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -65,6 +66,14 @@
 <script>
     $(document).ready(function(){   });
 
+    function setCookie(c_name,value,expiredays)
+    {
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
+    }
+
     function login(){
         var user=$("#user").val();
         var passw=$("#passw").val();
@@ -93,8 +102,10 @@
         //此处需要后端去判断用户名密码是否和数据库中储存的相符，若相符应在cookie中记录
         
         /**********后端写好后删************/
-        if(user == 'bgs' && passw == 'strdxgjc')
+        if(user == 'bgs' && passw == 'strdxgjc'){
             data = 'success';
+            setCookie('user',user,3)
+        }
         else 
             data = 'wrong password';
 
