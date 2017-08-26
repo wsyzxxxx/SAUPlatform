@@ -34,17 +34,17 @@
 
 <body style = "margin: 0rem; padding: 0rem; background-color: #eff4fa; ">
 	<div class = "container">
-        <div align = "middle" style = "text-align: center; margin-top: 12rem; ">
+        <div class="col-xs-12" align = "center" style = "text-align: center; margin-top: 12rem; ">
         <img src = "icon/title.png"  style = "width: 30rem; padding-right: 3rem;"/>
         </div>
-		<form role="form-horizontal" align="middle">
-			<div style="margin-top:5rem; margin-bottom: 0rem; " >
-                <span style="text-align: center;font-size: 1.8rem; color: grey; padding: 0.2rem; ">注册</span>
-				<span style="text-align: center;font-size: 1.8rem; color: dodgerblue; padding: 0.2rem; margin-left: 10rem;border-bottom: solid; ">登录</span>              
+		<form role="form-horizontal">
+			<div class="col-xs-12" align = "center" style="margin-top:5rem; margin-bottom: 0rem; " >
+                <a href = "sign_up.html"><span style="text-align: center;font-size: 1.8rem; color: grey; padding: 0.2rem; ">注册</span></a>
+				<a href = "log_in.html"><span style="text-align: center;font-size: 1.8rem; color: dodgerblue; padding: 0.2rem; margin-left: 10rem;border-bottom: solid; ">登录</span></a>              
 			</div>
-            <div id = "error_notice" style = "color: #DB0000; font-size: 1.5rem; margin-top: 1rem; margin-bottom: 0.5rem; ">&nbsp</div>
+            <div class="col-xs-12" align = "center" id = "error_notice" style = "color: #DB0000; font-size: 1.5rem; margin-top: 1rem; margin-bottom: 0.5rem; ">&nbsp</div>
 			<div class="col-xs-12" align="center">
-				<input type="text" class = "form-control cstin" id="user"  placeholder="学号/姓名">
+				<input type="text" class = "form-control cstin" id="user"  placeholder="学号">
 			</div>
 			<div class="col-xs-12" align="center">
 				<input type="password" class = "form-control cstin" id="passw"  placeholder="密码">
@@ -108,6 +108,7 @@
         }
         else 
             data = 'wrong password';
+        /*********************************/
 
         if (data=='success'){
             window.location.assign("notice.html");
