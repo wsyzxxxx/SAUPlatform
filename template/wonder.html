@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>wonder</title>
+    <link rel="stylesheet" type="text/css" href="menusheet.css" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <style type="text/css">
+        a:hover{text-decoration: none;}
+    </style>
+</head>
+
+<body>
+<div class = "menu_layout">
+<div align="center" style="margin: 50px 30px 10px 30px;">
+<a href = "user.html">
+<p class = menu><img src = "../user_infor/profile_pic/小哥哥.jpeg" class = "profile"/>
+小哥哥</p>
+</a>
+</div>
+<br/>
+<a href="notice.html"><p class = menu><img class = icon src = "icon/notice.png"/>通知</p></a>
+<a href="work.html"><p class = menu><img class = icon src = "icon/work.png"/>事务</p></a>
+<a href="goods.html"><p class = menu><img class = icon src = "icon/goods.png"/>物资</p></a>
+<a href="bible.html" ><p class = menu><img class = icon src = "icon/bible.png"/>宝典</p></a>
+<a href="wonder.html"><p class = "menu chosen"><img class = icon src = "icon/wonder.png"/>知乎</p></a>
+<a href="lstfd.html"><p class = menu><img class = icon src = "icon/lstfd.png"/>寻物</p></a>
+</div>
+
+<div class = "content">
+<div align="center">
+<form action = "search_in_bible">
+<div style="width: 400px; margin: 30px;">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="搜索">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="button"><img src="icon/search.png" height=20px></button>
+        </span>
+    </div><!-- /input-group -->
+</div>
+</form>
+</div>
+
+<?php
+echo "connected";
+?>
+
+<?php
+$con = mysql_connect("localhost","sau","strdxgjc");
+if (!$con)
+  {
+  die('Could not connect: ' . mysql_error());
+  }
+else echo "connected";
+// some code
+?>
+
+</div>
+</body>
+
+</html>

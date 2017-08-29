@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <title> 社享台登录 </title>
+    <link rel="shortcut icon" type="image/x-icon" href="icon/logo.png" media="screen" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="http://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet">
+
+	<style type="text/css">
+        a:hover{text-decoration: none;}
+        button.btn.btn-default.log{
+            text-align: center; 
+            width: 30rem; 
+            height: 5rem;
+            background-color: DodgerBlue; 
+            padding: 0.5rem; 
+            margin: 1rem; 
+            color: white;
+            font-size: 1.5rem;
+        }
+        input.form-control.cstin{
+            text-align: center; 
+            width: 30rem; 
+            height: 5rem;
+            padding: 0.5rem; 
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body style = "margin: 0rem; padding: 0rem; background-color: #eff4fa; ">
+	<div class = "container">
+        <div class="col-xs-12" align = "center" style = "text-align: center; margin-top: 12rem; ">
+        <img src = "icon/title.png"  style = "width: 30rem; padding-right: 3rem;"/>
+        </div>
+		<form role="form-horizontal" action = "../application/log_in.py" method = "POST">
+			<div class="col-xs-12" align = "center" style="margin-top:5rem; margin-bottom: 0rem; " >
+                <a href = "sign_up.html"><span style="text-align: center;font-size: 1.8rem; color: grey; padding: 0.2rem; ">注册</span></a>
+				<a href = "log_in.html"><span style="text-align: center;font-size: 1.8rem; color: dodgerblue; padding: 0.2rem; margin-left: 10rem;border-bottom: solid; ">登录</span></a>              
+			</div>
+            <div class="col-xs-12" align = "center" id = "error_notice" style = "color: #DB0000; font-size: 1.5rem; margin-top: 1rem; margin-bottom: 0.5rem; ">&nbsp</div>
+			<div class="col-xs-12" align="center">
+				<input type="text" class = "form-control cstin" id="user"  placeholder="学号" onblur = "checkinput('user')">
+			</div>
+			<div class="col-xs-12" align="center">
+				<input type="password" class = "form-control cstin" id="passw"  placeholder="密码" onblur = "checkinput('passw')">
+			</div>
+			<div class="col-offset-xs-1" style="margin-top: 6rem;margin-bottom: 3rem;" align="center">
+				<div class="col-xs-12">
+					<button type = submit class="btn btn-default log">登录</button>
+				</div>		
+			</div>
+	    </form>
+        </div>
+        <div style = "text-align: center; margin: 2rem;" >
+        <a href = "#" style = "font-size: 1.5rem; color: Dodgerblue;"><!--此处应有链接-->忘记/修改密码</a>
+        <a href = "#" style = "color: grey; margin-left: 11rem; "><!--此处应有链接-->异常登录举报</a>
+        </div>
+	</div>
+</body>
+
+<script>
+
+    function checkinput(obj){
+        if (obj == 'user'){
+            if($("#user").val() ==""){
+                document.getElementById("error_notice").innerHTML="请输入学号";
+                $("#user").focus();
+                return false;
+            }
+            else {
+                document.getElementById("error_notice").innerHTML="&nbsp";
+                return true;
+            }
+        }
+
+        if (obj == 'passw'){
+            if($("#passw").val()==""){
+                document.getElementById("error_notice").innerHTML="请输入密码";
+                $("#passw").focus();
+                return false;
+            }
+            else{
+                document.getElementById("error_notice").innerHTML="&nbsp";
+                return true;
+            }
+        }
+    }
+
+    //以下函数改为在application/log_in.py实现，请求输出沿用这里的js语句
+    function setCookie(c_name,value,expiredays)
+    {
+    var exdate=new Date()
+    exdate.setDate(exdate.getDate()+expiredays)
+    document.cookie=c_name+ "=" +escape(value)+
+    ((expiredays==null) ? "" : "; expires="+exdate.toGMTString())
+    }
+
+    function login(){
+
+        if (!(checkinput('user') && checkinput('passw')))return;
+        
+        var user=$("#user").val();
+        var passw=$("#passw").val();
+
+        /**此处需要后端去判断用户名密码是否和数据库中储存的相符，若相符应在cookie中记录****/
+        if(user == 'bgs' && passw == 'strdxgjc'){
+            data = 'success';
+            setCookie('user',user,3)
+        }
+        else 
+            data = 'wrong password';
+        /***************************************************************************/
+
+        if (data=='success'){
+            window.location.assign("notice.html");
+        }
+        else if (data =='wrong password'){
+            document.getElementById("error_notice").innerHTML="用户名不存在或密码错误";
+            $("#passw").val('').focus();
+        }
+        /*}).fail(function(){
+           document.getElementById("error_notice").innerHTML="请求失败，请稍后重试";
+        });这里是连接服务器、访问数据库失败的情况*/
+    }
+    
+</script>
+
+</html>
