@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>面试场次安排</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../icon/logo.png" media="screen" />
+    <link rel="stylesheet" type="text/css" href="../menusheet.css" />
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <style type="text/css">
+        p.notice{
+             background-color: white;
+             font-family: 微软雅黑;
+             font-size: 1rem;
+             height : 15rem;
+             padding: 0rem;
+             margin: 1rem 0rem;
+        }
+        a:hover{text-decoration: none;}
+        p.infor{
+            font-family: 微软雅黑;
+            font-size: 1.4rem;
+            line-height: 2.6rem;
+        }
+        .single{
+            color:dodgerblue;
+        }
+        .double{
+            color:grey;
+        }
+        p.vertical{
+            width: 1.75rem;
+            line-height: 1.8rem;
+            font-size: 1.75rem; 
+            padding-top: 3.9rem;
+            padding-left: 0.7rem;
+        }
+        td.tag{
+            height: 11rem;
+            width: 4.2rem;
+            background-repeat:no-repeat;
+            transform:scale(0.8);
+        }
+        #myMenu{
+            background-color: white;
+            list-style: none;
+            padding:0rem;
+            width: 13rem;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            position: fixed;
+        }
+
+        #myMenu li{
+            border-bottom: 1px solid #ccc;
+            padding: 1rem 1rem;
+            font-size: 1.35rem;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        #myMenu li:hover{
+            background-color: #ccc;
+        }
+
+    </style>
+    <script type="text/javascript">
+    window.onload=
+    function(){
+        myMenu.style.display = "none";
+        var oDiv = document.getElementById("sidemenu"),
+        H = 0,
+        Y = oDiv;
+        while (Y) {H += Y.offsetTop; Y = Y.offsetParent}
+        window.onscroll = function()
+        {
+            var s = document.body.scrollTop || document.documentElement.scrollTop;
+            if(s>H) {
+            oDiv.style = "position:fixed;top:0;"
+        }
+        else {
+            oDiv.style = "position:absolute;"
+        }
+    }
+    }
+
+    function getElementLeft(element){
+　　　　var actualLeft = element.offsetLeft;
+　　　　var current = element.offsetParent;
+　　　　while (current != null){
+　　　　　　actualLeft += current.offsetLeft;
+　　　　　　current = current.offsetParent;
+　　　　}
+　　　　return actualLeft;
+　　}
+　　function getElementTop(element){
+　　　　var actualTop = element.offsetTop;
+　　　　var current = element.offsetParent;
+　　　　while (current != null){
+　　　　　　actualTop += current.offsetTop;
+　　　　　　current = current.offsetParent;
+　　　　}
+　　　　return actualTop;
+　　}
+
+    var t = null;
+    var onMenu = false, onButton = false;
+    function choseButton(num){
+        onButton = true;
+        t=setTimeout("showmenu("+num+")",1000);
+    }
+    function showmenu(num){
+        var myMenu = document.getElementById("myMenu");
+        if (num == '0'){
+            myMenu.style.top = getElementTop(interviewee1) + 5+ "px";
+            myMenu.style.left = getElementLeft(interviewee1) - 125 + "px";
+            document.getElementById("menuli1").innerHTML = "创设-金旻";
+            document.getElementById("menuli2").innerHTML = "Tel:18867110000";
+        }
+        else if(num == '1'){
+            myMenu.style.top = getElementTop(interviewee2) + 5 + "px";
+            myMenu.style.left = getElementLeft(interviewee2) - 125 + "px";
+            document.getElementById("menuli1").innerHTML = "发服-章晗";
+            document.getElementById("menuli2").innerHTML = "18867110002";
+        }
+        else if(num == '11'){
+            myMenu.style.top = getElementTop(interviewer1) + 5 + "px";
+            myMenu.style.left = getElementLeft(interviewer1) - 125 + "px";
+            document.getElementById("menuli1").innerHTML = "查看小学妹报名表";
+            //.getElementById("menuli1").onDblClick = "windowMask.show()";
+            document.getElementById("menuli2").innerHTML = "18867110003";
+        }
+        myMenu.style.display = "block";
+        //myMenu.style.top = 0.5 + "rem";
+        //myMenu.style.left = -12.8 + "rem";
+    }
+    function hidemenu(){
+        clearTimeout(t);
+        setTimeout("if(!onMenu && !onButton)myMenu.style.display = 'none';", 1);
+    }
+
+    </script>
+</head>
+
+<body style = "padding-top: 5rem;">
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "line-height: 1rem;">
+<div class="container-fluid" > 
+    <div class="navbar-text" style = "font-size: 1.7rem; margin-left: 45%;">
+         <p>SAU面试场次自动安排系统</p>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>帮助</a></li>
+        <li><a href="../notice.html"><span class="glyphicon glyphicon-arrow-left"></span>返回主界面</a></li>
+    </ul>
+</div>
+</nav>
+
+<div class = "menu_layout" id = "sidemenu">
+<a href="overview.html"><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-eye-open"/> 面试概览</p></a>
+<a href="input.html"><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-pencil"/> 信息录入</p></a>
+<a href="arrange.html"><p class = "menu chosen" style="line-height: 12rem;"><span class="glyphicon glyphicon-list-alt"/> 场次安排</p></a>
+<a href="adjust.html" ><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-refresh"/> 批量调整</p></a>
+</div>
+
+<div class = "content" >
+       
+<div class = "col-xs-6 col-sm-4" style = "background-color: #F8FAFC; padding-top: 2rem; padding-left: 0.5rem; padding-right: 0.5rem; float: left;">
+    <div class = "col-xs-5">
+        <p class = "a infor single"><span class="glyphicon glyphicon-user"/> 5人：9人</p>
+        <p class = "a infor single"><span class="glyphicon glyphicon-home"/> 小剧场B座302</p>
+        <p class = "a infor single"><span class="glyphicon glyphicon-time"/> 9月16日14:15</p>
+    </div>
+    <div style = "float:right;">
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+        <td class = "tag" id = "interviewee1" style = "background-image: url(icon/创设.png);" href = "报名表" onmouseenter="choseButton(0)" onmouseleave ="onButton = false; hidemenu()">
+        <p class = "vertical">金 &nbsp 旻</p>
+        </td>
+        <td class = "tag" id = "interviewee2" style = "background-image: url(icon/发服.png);" href = "报名表"; onmouseenter="choseButton(1)" onmouseleave ="onButton = false; hidemenu()">
+        <p class = "vertical">章 &nbsp 晗</p>
+
+        </td>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/主办.png);">
+        <p class = "vertical">翁 &nbsp 昕</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/人资.png);">
+        <p class = "vertical">余柯贝</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/活动.png);">
+        <p class = "vertical">黎一博</p>
+        </td>
+        </tr>
+        </table>
+    </div>
+
+    <div style = "float:right; ">
+        <table border="0" cellpadding="0" cellspacing="0" style = "padding-left: 1rem">
+        <tr>
+        <td class = "tag" id = "interviewer1" style = "background-image: url(icon/女生2.png);" onmouseenter="choseButton(11)" onmouseleave ="onButton = false; hidemenu()">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        </tr>
+        </table>
+    </div>
+</div>
+
+<div class = "col-xs-12 col-sm-4" style = "background-color: white; padding-top: 2rem; padding-left: 0.5rem; padding-right: 0.5rem; float: left;">
+    <div class = "col-xs-5">
+        <p class = "a infor double"><span class="glyphicon glyphicon-home"/> 小剧场B座322</p>
+        <p class = "a infor double"><span class="glyphicon glyphicon-calendar"/> 9月16日</p>
+        <p class = "a infor double"><span class="glyphicon glyphicon-time"/> 14:15-15:00</p>
+    </div>
+    <div style = "float:right;">
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+        <td class = "tag" style = "background-image: url(icon/创设.png);">
+        <p class = "vertical">金 &nbsp 旻</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/发服.png);">
+        <p class = "vertical">章 &nbsp 晗</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/主办.png);">
+        <p class = "vertical">翁 &nbsp 昕</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/人资.png);">
+        <p class = "vertical">余柯贝</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/活动.png);">
+        <p class = "vertical">黎一博</p>
+        </td>
+        </tr>
+        </table>
+    </div>
+
+    <div style = "float:right; ">
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        </tr>
+        </table>
+    </div>
+</div>
+
+
+<div class = "col-xs-12 col-sm-4" style = "background-color: #F8FAFC; padding-top: 2rem; padding-left: 0.5rem; padding-right: 0.5rem; float: left;">
+    <div class = "col-xs-5">
+        <p class = "a infor single"><span class="glyphicon glyphicon-home"/> 小剧场B座302</p>
+        <p class = "a infor single"><span class="glyphicon glyphicon-calendar"/> 9月16日</p>
+        <p class = "a infor single"><span class="glyphicon glyphicon-time"/> 14:15-15:00</p>
+    </div>
+    <div style = "float:right;">
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+        <td class = "tag" style = "background-image: url(icon/创设.png);">
+        <p class = "vertical">金 &nbsp 旻</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/发服.png);">
+        <p class = "vertical">章 &nbsp 晗</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/主办.png);">
+        <p class = "vertical">翁 &nbsp 昕</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/人资.png);">
+        <p class = "vertical">余柯贝</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/活动.png);">
+        <p class = "vertical">黎一博</p>
+        </td>
+        </tr>
+        </table>
+    </div>
+
+    <div style = "float:right; ">
+        <table border="0" cellpadding="0" cellspacing="0" style = "padding-left: 1rem">
+        <tr>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        </tr>
+        </table>
+    </div>
+</div>
+
+<div class = "col-xs-12 col-sm-4" style = "background-color: white; padding-top: 2rem; padding-left: 0.5rem; padding-right: 0.5rem; float: left;">
+    <div class = "col-xs-5">
+        <p class = "a infor double"><span class="glyphicon glyphicon-home"/> 小剧场B座322</p>
+        <p class = "a infor double"><span class="glyphicon glyphicon-calendar"/> 9月16日</p>
+        <p class = "a infor double"><span class="glyphicon glyphicon-time"/> 14:15-15:00</p>
+    </div>
+    <div style = "float:right;">
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+        <td class = "tag" style = "background-image: url(icon/创设.png);">
+        <p class = "vertical">金 &nbsp 旻</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/发服.png);">
+        <p class = "vertical">章 &nbsp 晗</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/主办.png);">
+        <p class = "vertical">翁 &nbsp 昕</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/人资.png);">
+        <p class = "vertical">余柯贝</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/活动.png);">
+        <p class = "vertical">黎一博</p>
+        </td>
+        </tr>
+        </table>
+    </div>
+
+    <div style = "float:right; ">
+        <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/男生.png);">
+        <p class = "vertical">小学弟</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        <td class = "tag" style = "background-image: url(icon/女生2.png);">
+        <p class = "vertical">小学妹</p>
+        </td>
+        </tr>
+        </table>
+    </div>
+</div>
+
+ <ul id="myMenu" onmouseenter="onMenu = true" onmouseleave="onMenu = false; hidemenu()">
+            <li id = "menuli1">&nbsp</li>
+            <li id = "menuli2" href = "#">&nbsp</li>
+        </ul>
+
+</div>
+</body>
+
+</html>
