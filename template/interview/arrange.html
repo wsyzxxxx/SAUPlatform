@@ -17,9 +17,23 @@
              margin: 1rem 0rem;
         }
         a:hover{text-decoration: none;}
-        p.infor{
+        div.itvw_infor_s{
+            background-color: #F8FAFC; 
+            padding-top: 2rem; 
+            padding-left: 0.5rem; 
+            padding-right: 0.5rem; 
+            float: left;
+        }
+        div.itvw_infor_d{
+            background-color: white; 
+            padding-top: 2rem; 
+            padding-left: 0.5rem; 
+            padding-right: 0.5rem; 
+            float: left;
+        }
+        .infor{
             font-family: 微软雅黑;
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             line-height: 2.6rem;
         }
         .single{
@@ -49,102 +63,42 @@
             border: 1px solid #ccc;
             border-bottom: none;
             position: fixed;
+            display: none;
+            z-index: 6;
         }
 
         #myMenu li{
             border-bottom: 1px solid #ccc;
-            padding: 1rem 1rem;
-            font-size: 1.35rem;
+            padding: 0.3rem 0.3rem;
+            font-size: 1.3rem;
             cursor: pointer;
-            z-index: 999;
         }
 
         #myMenu li:hover{
             background-color: #ccc;
         }
 
-    </style>
-    <script type="text/javascript">
-    window.onload=
-    function(){
-        myMenu.style.display = "none";
-        var oDiv = document.getElementById("sidemenu"),
-        H = 0,
-        Y = oDiv;
-        while (Y) {H += Y.offsetTop; Y = Y.offsetParent}
-        window.onscroll = function()
-        {
-            var s = document.body.scrollTop || document.documentElement.scrollTop;
-            if(s>H) {
-            oDiv.style = "position:fixed;top:0;"
+        #mask {
+            position:absolute;
+            width:100%;
+            padding:5rem;
+            // _top:expression(documentElement.scrollTop);
+             background:rgba(0,0,0,0.5);
+             background:transparent\9;
+             filter:progid:DXImageTransform.Microsoft.Gradient(
+             startColorStr=#80000000,endColorStr=#80000000
+             );
+            display:none;
+            z-index: 100;
         }
-        else {
-            oDiv.style = "position:absolute;"
-        }
-    }
-    }
+        #mask_td {text-align:center;}
 
-    function getElementLeft(element){
-　　　　var actualLeft = element.offsetLeft;
-　　　　var current = element.offsetParent;
-　　　　while (current != null){
-　　　　　　actualLeft += current.offsetLeft;
-　　　　　　current = current.offsetParent;
-　　　　}
-　　　　return actualLeft;
-　　}
-　　function getElementTop(element){
-　　　　var actualTop = element.offsetTop;
-　　　　var current = element.offsetParent;
-　　　　while (current != null){
-　　　　　　actualTop += current.offsetTop;
-　　　　　　current = current.offsetParent;
-　　　　}
-　　　　return actualTop;
-　　}
-
-    var t = null;
-    var onMenu = false, onButton = false;
-    function choseButton(num){
-        onButton = true;
-        t=setTimeout("showmenu("+num+")",1000);
-    }
-    function showmenu(num){
-        var myMenu = document.getElementById("myMenu");
-        if (num == '0'){
-            myMenu.style.top = getElementTop(interviewee1) + 5+ "px";
-            myMenu.style.left = getElementLeft(interviewee1) - 125 + "px";
-            document.getElementById("menuli1").innerHTML = "创设-金旻";
-            document.getElementById("menuli2").innerHTML = "Tel:18867110000";
-        }
-        else if(num == '1'){
-            myMenu.style.top = getElementTop(interviewee2) + 5 + "px";
-            myMenu.style.left = getElementLeft(interviewee2) - 125 + "px";
-            document.getElementById("menuli1").innerHTML = "发服-章晗";
-            document.getElementById("menuli2").innerHTML = "18867110002";
-        }
-        else if(num == '11'){
-            myMenu.style.top = getElementTop(interviewer1) + 5 + "px";
-            myMenu.style.left = getElementLeft(interviewer1) - 125 + "px";
-            document.getElementById("menuli1").innerHTML = "查看小学妹报名表";
-            //.getElementById("menuli1").onDblClick = "windowMask.show()";
-            document.getElementById("menuli2").innerHTML = "18867110003";
-        }
-        myMenu.style.display = "block";
-        //myMenu.style.top = 0.5 + "rem";
-        //myMenu.style.left = -12.8 + "rem";
-    }
-    function hidemenu(){
-        clearTimeout(t);
-        setTimeout("if(!onMenu && !onButton)myMenu.style.display = 'none';", 1);
-    }
-
-    </script>
+    </style> 
 </head>
 
-<body style = "padding-top: 5rem;">
+<body>
 
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "line-height: 1rem;">
+<nav class="navbar navbar-default" role="navigation" style = "line-height: 1rem; margin:0rem; min-width: 105rem">
 <div class="container-fluid" > 
     <div class="navbar-text" style = "font-size: 1.7rem; margin-left: 45%;">
          <p>SAU面试场次自动安排系统</p>
@@ -163,10 +117,239 @@
 <a href="adjust.html" ><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-refresh"/> 批量调整</p></a>
 </div>
 
-<div class = "content" >
-       
-<div class = "col-xs-6 col-sm-4" style = "background-color: #F8FAFC; padding-top: 2rem; padding-left: 0.5rem; padding-right: 0.5rem; float: left;">
-    <div class = "col-xs-5">
+<div class = 'content' id = 'mainPage'>
+
+<script type="text/javascript">
+
+var mainPage = document.getElementById("mainPage");
+
+var itvw_num = 30;
+var itvw = new Array(itvw_num);
+for(var i = 0; i < itvw_num; i++){
+    itvw[i] = new Object();
+    itvw[i].time = '15:15';
+    itvw[i].date = '9月16日';
+    itvw[i].loca = '小剧场B座302';
+    itvw[i].itvwee_num = 5;
+    itvw[i].itvwer_num = 9;
+    itvw[i].itvwee = new Array(itvw[i].itvwee_num);
+    itvw[i].itvwer = new Array(itvw[i].itvwer_num);
+    for(var j = 0; j < itvw[i].itvwee_num; j++){
+        itvw[i].itvwee[j] = new Object();
+        itvw[i].itvwee[j].name = '翁昕';
+        itvw[i].itvwee[j].dept = '办公室';
+        itvw[i].itvwee[j].tel = '18867116831';
+        if(j == 2)
+            itvw[i].itvwee[j].main = true;
+        else 
+            itvw[i].itvwee[j].main = false;
+    }
+    for(var j = 0; j < itvw[i].itvwer_num; j++){
+        itvw[i].itvwer[j] = new Object();
+        if(j %2 == 0){
+            itvw[i].itvwer[j].name = '小学妹';
+            itvw[i].itvwer[j].gender = 'f';
+        }
+        else {
+            itvw[i].itvwer[j].name = '小学弟';
+            itvw[i].itvwer[j].gender = 'm';
+        }
+        itvw[i].itvwer[j].dept1 = '办公室';
+        itvw[i].itvwer[j].dept2 = '人资';
+        itvw[i].itvwer[j].tel = '18867116831';
+        itvw[i].itvwer[j].form_src = '报名表/回收袋.jpg';
+    }
+}
+delete i, j;
+
+function initialise(){
+for(var count = 0; count < itvw_num; count++){
+    itvw[count].people_txt = document.createTextNode(itvw[count].itvwee_num +"人 : " + itvw[count].itvwer_num + "人");
+    itvw[count].people_icon = document.createElement('span');
+    itvw[count].people_icon.className = "glyphicon glyphicon-user";
+    itvw[count].people = document.createElement('p');
+    itvw[count].people.appendChild(itvw[count].people_icon);
+    itvw[count].people.appendChild(itvw[count].people_txt);
+
+    itvw[count].loca_txt = document.createTextNode(itvw[count].loca);
+    itvw[count].loca_icon = document.createElement('span');
+    itvw[count].loca_icon.className = "glyphicon glyphicon-home";
+    itvw[count].loca = document.createElement('p');
+    itvw[count].loca.appendChild(itvw[count].loca_icon);
+    itvw[count].loca.appendChild(itvw[count].loca_txt);
+
+    itvw[count].time_txt = document.createTextNode(itvw[count].date + itvw[count].time);
+    itvw[count].time_icon = document.createElement('span');
+    itvw[count].time_icon.className = "glyphicon glyphicon-time";
+    itvw[count].time = document.createElement('p');
+    itvw[count].time.appendChild(itvw[count].time_icon);
+    itvw[count].time.appendChild(itvw[count].time_txt);
+
+     if (document.body.clientWidth > 750) {
+        if(count%2 == 0)mark = 1;
+        else mark = 0;
+    }
+    else {
+        if(count%4 == 0 || count%4 == 3)mark = 1;
+        else mark = 0;
+    }
+
+    if(mark){
+        itvw[count].people.className = "a infor single";
+        itvw[count].loca.className = "a infor single";
+        itvw[count].time.className = "a infor single";
+    }
+    else{
+        itvw[count].people.className = "a infor double";
+        itvw[count].loca.className = "a infor double";
+        itvw[count].time.className = "a infor double";
+    }
+
+    itvw[count].brief = document.createElement('div');
+    itvw[count].brief.className = "col-xs-5";
+    itvw[count].brief.appendChild(itvw[count].people);
+    itvw[count].brief.appendChild(itvw[count].loca);
+    itvw[count].brief.appendChild(itvw[count].time);
+
+    itvw[count].interviewee = new Object;    
+    itvw[count].interviewee.list = new Array(itvw[count].itvwee_num);
+    itvw[count].interviewee.tr = document.createElement('tr');
+    for (i = 0; i < itvw[count].itvwee_num; i++){
+        itvw[count].interviewee.list[i] = new Object;
+        itvw[count].interviewee.list[i].sheet = document.createElement('td');
+        itvw[count].interviewee.list[i].sheet.className = "tag";
+        if(!itvw[count].itvwee[i].main){
+            switch(itvw[count].itvwee[i].dept)
+            {
+                case '人资':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/人资.png);");
+                break;
+                case '发服':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/发服.png);");
+                break;
+                case '创设':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/创设.png);");
+                break;
+                case '媒体':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/媒体.png);");
+                break;
+                case '注册':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/注册.png);");
+                break;
+                case '活动':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/活动.png);");
+                break;
+                case '合作':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/合作.png);");
+                break;
+                default:
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/办办.png);");
+                break;                
+            }
+        }
+        else 
+            switch(itvw[count].itvwee[i].dept)
+            {  
+                case '人资':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/主人.png);");
+                break;
+                case '发服':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/主发.png);");
+                break;
+                case '创设':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/主创.png);");
+                break;
+                case '媒体':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/主媒.png);");
+                break;
+                case '注册':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/主注.png);");
+                break;
+                case '活动':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/主活.png);");
+                break;
+                case '合作':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/主合.png);");
+                break;
+                default:
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/主办.png);");
+                break;
+            }
+            itvw[count].interviewee.list[i].name = document.createElement('p');
+            itvw[count].interviewee.list[i].name.className = "vertical";
+            itvw[count].interviewee.list[i].name_txt = document.createTextNode(itvw[count].itvwee[i].name);//这里要改
+            itvw[count].interviewee.list[i].name.appendChild(itvw[count].interviewee.list[i].name_txt);
+            itvw[count].interviewee.list[i].sheet.appendChild(itvw[count].interviewee.list[i].name);
+            var thisButton = new choseButton(1, itvw[count].interviewee.list[i].sheet, itvw[count].itvwee[i]);
+            itvw[count].interviewee.list[i].sheet.onmouseenter =  thisButton.showmenuFunc;
+            itvw[count].interviewee.list[i].sheet.setAttribute("onmouseleave","onButton = false; hidemenu()");
+
+            itvw[count].interviewee.tr.appendChild(itvw[count].interviewee.list[i].sheet);
+    }
+
+    itvw[count].interviewee.table = document.createElement('table');
+    itvw[count].interviewee.table.setAttribute("border","0");
+    itvw[count].interviewee.table.setAttribute("cellpadding","0");
+    itvw[count].interviewee.table.setAttribute("cellspacing","0");
+    itvw[count].interviewee.table.appendChild(itvw[count].interviewee.tr);
+
+    itvw[count].interviewee.div = document.createElement('div');
+    itvw[count].interviewee.div.setAttribute("style", "float: right;");
+    itvw[count].interviewee.div.appendChild(itvw[count].interviewee.table);
+
+    itvw[count].interviewer = new Object;    
+    itvw[count].interviewer.list = new Array(itvw[count].itvwer_num);
+    itvw[count].interviewer.tr = document.createElement('tr');
+    for (i = 0; i < itvw[count].itvwer_num; i++){
+        itvw[count].interviewer.list[i] = new Object;
+        itvw[count].interviewer.list[i].sheet = document.createElement('td');
+        itvw[count].interviewer.list[i].sheet.className = "tag";
+        switch (itvw[count].itvwer[i].gender){
+            case 'f':
+            itvw[count].interviewer.list[i].sheet.setAttribute("style", "background-image: url(icon/女生2.png);");
+            break;
+            default:
+            itvw[count].interviewer.list[i].sheet.setAttribute("style", "background-image: url(icon/男生.png);");
+            break;
+        }
+        itvw[count].interviewer.list[i].name = document.createElement('p');
+        itvw[count].interviewer.list[i].name.className = "vertical";
+        itvw[count].interviewer.list[i].name_txt = document.createTextNode(itvw[count].itvwer[i].name);//这里要改
+        itvw[count].interviewer.list[i].name.appendChild(itvw[count].interviewer.list[i].name_txt);
+        itvw[count].interviewer.list[i].sheet.appendChild(itvw[count].interviewer.list[i].name);
+        var thisButton = new choseButton(0, itvw[count].interviewer.list[i].sheet, itvw[count].itvwer[i]);
+        itvw[count].interviewer.list[i].sheet.onmouseenter =  thisButton.showmenuFunc;
+        itvw[count].interviewer.list[i].sheet.setAttribute("onmouseleave","onButton = false; hidemenu()");
+
+        itvw[count].interviewer.tr.appendChild(itvw[count].interviewer.list[i].sheet);
+    }
+
+    itvw[count].interviewer.table = document.createElement('table');
+    itvw[count].interviewer.table.setAttribute("border","0");
+    itvw[count].interviewer.table.setAttribute("cellpadding","0");
+    itvw[count].interviewer.table.setAttribute("cellspacing","0");
+    itvw[count].interviewer.table.appendChild(itvw[count].interviewer.tr);
+
+    itvw[count].interviewer.div = document.createElement('div');
+    itvw[count].interviewer.div.setAttribute("style", "float: right;");
+    itvw[count].interviewer.div.appendChild(itvw[count].interviewer.table);
+
+    itvw[count].page = document.createElement('div');  
+    if(mark) itvw[count].page.className = "col-xs-6 col-sm-4 itvw_infor_s";
+    else itvw[count].page.className = "col-xs-6 col-sm-4 itvw_infor_d";
+    itvw[count].page.appendChild(itvw[count].brief);
+    itvw[count].page.appendChild(itvw[count].interviewee.div);
+    itvw[count].page.appendChild(itvw[count].interviewer.div);
+
+    mainPage.appendChild(itvw[count].page);
+    }
+
+}
+
+</script>
+
+<!--div class = "col-xs-6 col-sm-4" style = "background-color: #F8FAFC; padding-top: 2rem; padding-left: 0.5rem; padding-right: 0.5rem; float: left;">
+    <div class = "col-xs-6 col-sm-5">
         <p class = "a infor single"><span class="glyphicon glyphicon-user"/> 5人：9人</p>
         <p class = "a infor single"><span class="glyphicon glyphicon-home"/> 小剧场B座302</p>
         <p class = "a infor single"><span class="glyphicon glyphicon-time"/> 9月16日14:15</p>
@@ -423,15 +606,242 @@
         </td>
         </tr>
         </table>
-    </div>
-</div>
-
- <ul id="myMenu" onmouseenter="onMenu = true" onmouseleave="onMenu = false; hidemenu()">
-            <li id = "menuli1">&nbsp</li>
-            <li id = "menuli2" href = "#">&nbsp</li>
-        </ul>
-
+    </div-->
 </div>
 </body>
 
+<ul id="myMenu" onmouseenter="onMenu = true" onmouseleave="onMenu = false; hidemenu()">
+    <li id = "menuli1">&nbsp</li>
+    <li id = "menuli2" href = "#">&nbsp</li>
+    <li id = "menuli3" href = "#">&nbsp</li>
+    <li id = "menuli4" href = "#">&nbsp</li>
+</ul>
+</div>
+
+<table id="mask"><tr><td id="mask_td"></td></tr></table>
+
+<script type="text/javascript">
+     function getElementLeft(element){
+　　　　var actualLeft = element.offsetLeft;
+　　　　var current = element.offsetParent;
+　　　　while (current != null){
+　　　　　　actualLeft += current.offsetLeft;
+　　　　　　current = current.offsetParent;
+　　　　}
+　　　　return actualLeft;
+　　}
+　　function getElementTop(element){
+　　　　var actualTop = element.offsetTop;
+　　　　var current = element.offsetParent;
+　　　　while (current != null){
+　　　　　　actualTop += current.offsetTop;
+　　　　　　current = current.offsetParent;
+　　　　}
+　　　　return actualTop;
+　　}
+
+    var H;
+    var sidemenu = document.getElementById("sidemenu");
+    var mask = document.getElementById("mask");
+    window.onload =
+    function(){
+        initialise();
+        H = getElementTop(sidemenu);
+        window.onresize = function(){
+            H = getElementTop(sidemenu);
+            mask.setSize();
+        }
+        window.onscroll = function(){setSideMenu();}
+    }
+
+
+    function setSideMenu(){
+        var s = document.body.scrollTop || document.documentElement.scrollTop;
+        if(s>H) {
+            sidemenu.style = "position:fixed;top:0;";
+        }
+        else {
+            sidemenu.style = "position:absolute;";
+        }
+    }
+
+    var t = null;
+    var form_src;
+    var onMenu = false, onButton = false;
+    function choseButton(role, per_sheet, per_infor){
+        this.showmenuFunc = function(){
+            onButton = true;
+            //alert("showmenu(" + role + "," + per_sheet + "," + per_infor + ")");          
+            t=setTimeout(function(){
+                var myMenu = document.getElementById("myMenu");
+                var menuli1 = document.getElementById("menuli1");
+                var menuli2 = document.getElementById("menuli2");
+                var menuli3 = document.getElementById("menuli3");
+                var menuli4 = document.getElementById("menuli4");
+                myMenu.style.top = getElementTop(per_sheet) - document.body.scrollTop + 5+ "px";
+                myMenu.style.left = getElementLeft(per_sheet) - document.body.scrollLeft - 125 + "px";
+                if (role == 1){
+                    //interviewee1 = document.getElementById("interviewee1");
+                    myMenu.style.lineHeight =  "4rem";       
+                    menuli1.innerHTML = per_infor.dept + "-" + per_infor.name;
+                    menuli2.innerHTML = "Tel:" + per_infor.tel;
+                    menuli3.style.display = "none";
+                    menuli4.style.display = "none";
+                }
+                else {
+                    myMenu.style.lineHeight = "2rem";
+                    menuli1.innerHTML = "查看" + per_infor.name + "报名表";
+                    menuli1.ondblclick = showMask();
+                    form_src = per_infor.form_src;
+                    menuli2.innerHTML = "Tel:" + per_infor.tel;
+                    menuli3.style.display = "block";
+                    menuli3.innerHTML = "第一志愿：" + per_infor.dept1;
+                    menuli4.style.display = "block";
+                    menuli4.innerHTML = "第二志愿：" + per_infor.dept2;
+                }
+                /*else if(num == '11'){
+                    myMenu.style.top = getElementTop(interviewer1) - document.body.scrollTop + 5 + "px";
+                    myMenu.style.left = getElementLeft(interviewer1)- document.body.scrollLeft - 125 + "px";
+                    document.getElementById("menuli1").innerHTML = "查看小学妹报名表";
+                    form_src = "报名表/回收袋.jpg";
+                    document.getElementById("menuli2").innerHTML = "18867110003";
+                }*/
+                myMenu.style.display = "block";
+            }, 1000);
+        }
+    }
+    /*function showmenu(role, per_sheet, per_infor){
+        var myMenu = document.getElementById("myMenu");
+        var menuli1 = document.getElementById("menuli1");
+        var menuli2 = document.getElementById("menuli2");
+        var menuli3 = document.getElementById("menuli3");
+        var menuli4 = document.getElementById("menuli4");
+        myMenu.style.top = getElementTop(per_sheet) - document.body.scrollTop + 5+ "px";
+        myMenu.style.left = getElementLeft(per_sheet) - document.body.scrollLeft - 125 + "px";
+        if (role == 1){
+            //interviewee1 = document.getElementById("interviewee1");       
+            menuli1.innerHTML = per_infor.name;
+            menuli2.innerHTML = "Tel:" + per_infor.tel;
+            menuli3.style.display = "none";
+            menuli4.style.display = "none";
+        }
+        else {
+            menuli1.innerHTML = "查看" + per_infor.name + "报名表";
+            form_src = per_infor.form_src;
+            menuli2.innerHTML = "Tel:" + per_infor.tel;
+            menuli3.style.display = "block";
+            menuli3.innerHTML = "第一志愿：" + per_infor.dept1;
+            menuli4.style.display = "block";
+            menuli4.innerHTML = "第二志愿：" + per_infor.dept2;
+        }
+        /*else if(num == '11'){
+            myMenu.style.top = getElementTop(interviewer1) - document.body.scrollTop + 5 + "px";
+            myMenu.style.left = getElementLeft(interviewer1)- document.body.scrollLeft - 125 + "px";
+            document.getElementById("menuli1").innerHTML = "查看小学妹报名表";
+            form_src = "报名表/回收袋.jpg";
+            document.getElementById("menuli2").innerHTML = "18867110003";
+        }*/
+        /*myMenu.style.display = "block";
+        //myMenu.style.top = 0.5 + "rem";
+        //myMenu.style.left = -12.8 + "rem";
+    }*/
+
+    function hidemenu(){
+        clearTimeout(t);
+        setTimeout("if(!onMenu && !onButton)myMenu.style.display = 'none';", 1);
+    }
+
+var isIE=navigator.userAgent.match(/MSIE (\d)/i);
+    isIE=isIE?isIE[1]:isIE;
+    mask.td = document.getElementById("mask_td");
+    //计算mask的大小
+    mask.setSize=function(){
+     //获取文档可见区域宽度并设置到mask上
+     var de=document.documentElement;
+     mask.style.width=de.clientWidth+"px";
+     mask.style.height=de.clientheight+"px";
+    //添加show方法
+    }
+
+    var scrTop;
+    mask.show=function(){
+        scrTop = document.scrollingElement.scrollTop;
+        document.body.style.top = -scrTop;
+        var mainPage = document.getElementById("mainPage");
+        mainPage.style.position = "fixed";
+        mask.overflow = "auto";
+        mask.style.display=isIE==6?"block":"table";
+    };
+
+    //添加hide方法
+    mask.hide=function(){
+        mask.td.innerHTML="";
+        mask.style.display="none";    
+        document.scrollingElement.scrollTop = scrTop;
+        var mainPage = document.getElementById("mainPage");
+        mainPage.style.position = "absolute";
+    };
+
+    //添加append方法
+    mask.append=function(e){
+     //在mask的TD里面添加内容
+     mask.td.appendChild(e);
+    };
+    //点击mask关闭
+    mask.onclick=function(e){
+     //判断事件来源，如果是空白区域被点击了就关闭mask
+     e=e||event;
+     (e.target||e.srcElement)==mask.td&&mask.hide();
+    };
+
+    //窗体大小改变时也改变mask的大小
+    window.onresize=function(){
+     mask.setSize();
+    };
+
+    //点击图片的事件
+    var o;
+    var src = null;
+    var pic_size = new Array("500px", "700px", "1000px", "1500px");
+    function showMask(){
+     //创建一个图片对象
+     o = new Image;
+     //设置图片的地址
+     o.src = form_src;
+     o.size = 2;
+     o.style.width = pic_size[o.size];
+     //在mask内添加内容
+     mask.setSize();
+     mask.append(o);
+     //显示mask
+     mask.show();
+    };
+
+    onkeypress = function(e){
+        if(mask.style.display == "none")return;
+        if(window.event) // IE
+        {
+            keynum = e.keyCode
+        }
+        else if(e.which) // Netscape/Firefox/Opera
+        {
+            keynum = e.which
+        }
+        if(keynum == 91){
+            if(o.size > 0)o.size -= 1;
+            o.style.width = pic_size[o.size];
+            return;
+        }
+        if(keynum == 93){
+            if(o.size < 3)o.size += 1;
+            o.style.width = pic_size[o.size];
+            return;
+        }
+        if(keynum == 113){
+            mask.td&&mask.hide();
+            return;
+        }
+    }
+
+</script>
 </html>
