@@ -1,6 +1,6 @@
-div.menu_layout{
-	display: inline-block; 
-	width: 20%; 
+.menu_layout{
+	display: block; 
+	width: 15%;
 	min-width: 15rem;
 	height: 100%; 
 	float: left; 
@@ -8,16 +8,14 @@ div.menu_layout{
 	position:fixed;
 }
 .content{
-	display: inline-block; 
-	width: 80%; 
-	min-width: 90rem;
+	display: block; 
 	float: left;
 	clear:both;
 	font-size: 1.35rem; 
 	font-family: 微软雅黑;
-	margin-left: 20%;
+	margin-left: 15%;
+	width:85%;
 	color: black; 
-	line-height:2.4rem; 
 	position:absolute;
 }
 img.profile{

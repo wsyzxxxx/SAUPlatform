@@ -16,16 +16,44 @@
              padding: 0px;
              margin: 1px 0px;
         }
+        .infor{
+            font-size: 1.8rem;
+            color: #5A5A5A;
+            float:left;
+        }
         a:hover{text-decoration: none;}
+        p.single{
+            padding:5.5rem;
+            margin : 0rem; 
+            outline-width: 0rem;
+            background-color: #F8FAFC; 
+        }
+        p.double{
+            padding:5.5rem;
+            margin : 0rem; 
+            outline-width: 0rem;
+            background-color: white;
+        }
+        button.btn.btn-default.check{
+            text-align: center; 
+            margin:0rem;
+            width: 30rem; 
+            height: 5rem;
+            background-color: DodgerBlue; 
+            color: white;
+            font-size: 1.5rem;
+            display: inline;
+            float:left;
+        }
     </style>
 </head>
 
-<body style = "padding-top: 5rem;">
-
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "line-height: 1rem;">
+<body>
+<nav class="navbar navbar-default" role="navigation" style = "line-height: 1rem; margin:0rem;">
 <div class="container-fluid" > 
-    <div class="navbar-text" style = "font-size: 1.7rem; margin-left: 45%;">
-         <p>SAU面试场次自动安排系统</p>
+    <div class = "col-xs-3 col-sm-5"></div>
+    <div class="navbar-text">
+         <p style = "font-size: 1.7rem;">SAU面试场次自动安排系统</p>
     </div>
     <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>帮助</a></li>
@@ -34,18 +62,81 @@
 </div>
 </nav>
 
-<div class = "menu_layout">
+<div class = "menu_layout" id = "sidemenu">
 <a href="overview.html"><p class = "menu chosen" style="line-height: 12rem;"><span class="glyphicon glyphicon-eye-open"/> 面试概览</p></a>
 <a href="input.html"><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-pencil"/> 信息录入</p></a>
 <a href="arrange.html"><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-list-alt"/> 场次安排</p></a>
 <a href="adjust.html" ><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-refresh"/> 批量调整</p></a>
 </div>
 
-<div class = "content"  style = "background-color:whiteSmoke">
+<div class = "content" id = "mainPage" style = "width: 85%;">
 
+<p class = "double">
+<div class = "col-xs-0 col-sm-2"></div>
+<div id = "interviewee" class = "col-xs-12 col-sm-5 infor"></div>
+<button class = "btn btn-default check" id = "itvwee_check">查看详情</button>
+</p>
 
+<p class = "single">
+<div class = "col-xs-0 col-sm-2"></div>
+<div id = "interviewer" class = "col-xs-12 col-sm-5 infor"></div>
+<button class = 'btn btn-default check' id = "itvwer_check">查看详情</button>
+</p>
+
+<p class = "double">
+<div class = "col-xs-0 col-sm-2"></div>
+<div id = "interview" class = "col-xs-12 col-sm-5 infor"></div>
+<button class = 'btn btn-default check' id = "itvw_check">查看详情</button>
+</p>
+
+<p class = "single">
+<div class = "col-xs-0 col-sm-2"></div>
+<div id = "progress" class = "col-xs-12 col-sm-5 infor"></div>
+<button class = 'btn btn-default check' id = "progress_check">查看详情</button>
+</p>
 
 </div>
 </body>
 
+<script type="text/javascript">
+var itvw = new Object;
+itvw.itvwee_num = 40;
+itvw.itvwer_num = 900;
+itvw.itvw_num = 100;
+itvw.itvw_done_num = 20;
+
+function getElementTop(element){
+　　　　var actualTop = element.offsetTop;
+　　　　var current = element.offsetParent;
+　　　　while (current != null){
+　　　　　　actualTop += current.offsetTop;
+　　　　　　current = current.offsetParent;
+　　　　}
+　　　　return actualTop;
+　　}
+
+window.onload =
+    function(){
+        document.getElementById('interviewee').innerHTML = "面试官人数：" + itvw.itvwee_num + "人";
+        document.getElementById('interviewer').innerHTML = "面试者人数：" + itvw.itvwer_num + "人";
+        document.getElementById('interview').innerHTML = "面试场次数：" + itvw.itvw_num + "人";
+        document.getElementById('progress').innerHTML = "面试进程&nbsp &nbsp：" + itvw.itvw_done_num +"/" +itvw.itvw_num;
+        H = getElementTop(sidemenu);
+        window.onresize = function(){
+            H = getElementTop(sidemenu);
+            if(mainPage.offsetLeft < 150)
+                mainPage.style.marginLeft = 150 + "px";
+        }
+        window.onscroll = function(){
+            var s = document.body.scrollTop || document.documentElement.scrollTop;
+            if(s>H) {
+                sidemenu.style = "position:fixed;top:0;";
+            }
+            else {
+                sidemenu.style = "position:absolute;";
+            }
+        }
+    }
+
+</script>
 </html>

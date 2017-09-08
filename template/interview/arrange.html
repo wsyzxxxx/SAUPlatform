@@ -98,10 +98,11 @@
 
 <body>
 
-<nav class="navbar navbar-default" role="navigation" style = "line-height: 1rem; margin:0rem; min-width: 105rem">
+<nav class="navbar navbar-default" role="navigation" style = "line-height: 1rem; margin:0rem;">
 <div class="container-fluid" > 
-    <div class="navbar-text" style = "font-size: 1.7rem; margin-left: 45%;">
-         <p>SAU面试场次自动安排系统</p>
+    <div class = "col-xs-3 col-sm-5"></div>
+    <div class="navbar-text">
+         <p style = "font-size: 1.7rem;">SAU面试场次自动安排系统</p>
     </div>
     <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>帮助</a></li>
@@ -117,7 +118,20 @@
 <a href="adjust.html" ><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-refresh"/> 批量调整</p></a>
 </div>
 
-<div class = 'content' id = 'mainPage'>
+<div class = 'content' id = 'mainPage' style = "width: auto;">
+
+</div>
+</body>
+
+<ul id="myMenu" onmouseenter="onMenu = true" onmouseleave="onMenu = false; hidemenu()">
+    <li id = "menuli1">&nbsp</li>
+    <li id = "menuli2" href = "#">&nbsp</li>
+    <li id = "menuli3" href = "#">&nbsp</li>
+    <li id = "menuli4" href = "#">&nbsp</li>
+</ul>
+</div>
+
+<table id="mask"><tr><td id="mask_td"></td></tr></table>
 
 <script type="text/javascript">
 
@@ -185,14 +199,8 @@ for(var count = 0; count < itvw_num; count++){
     itvw[count].time.appendChild(itvw[count].time_icon);
     itvw[count].time.appendChild(itvw[count].time_txt);
 
-     if (document.body.clientWidth > 750) {
-        if(count%2 == 0)mark = 1;
-        else mark = 0;
-    }
-    else {
-        if(count%4 == 0 || count%4 == 3)mark = 1;
-        else mark = 0;
-    }
+    if(count%2 == 0)mark = 1;
+    else mark = 0;
 
     if(mark){
         itvw[count].people.className = "a infor single";
@@ -335,292 +343,16 @@ for(var count = 0; count < itvw_num; count++){
     itvw[count].interviewer.div.appendChild(itvw[count].interviewer.table);
 
     itvw[count].page = document.createElement('div');  
-    if(mark) itvw[count].page.className = "col-xs-6 col-sm-4 itvw_infor_s";
-    else itvw[count].page.className = "col-xs-6 col-sm-4 itvw_infor_d";
+    if(mark) itvw[count].page.className = "col-xs-12 col-sm-4 itvw_infor_s";
+    else itvw[count].page.className = "col-xs-12 col-sm-4 itvw_infor_d";
     itvw[count].page.appendChild(itvw[count].brief);
     itvw[count].page.appendChild(itvw[count].interviewee.div);
     itvw[count].page.appendChild(itvw[count].interviewer.div);
 
     mainPage.appendChild(itvw[count].page);
     }
-
 }
 
-</script>
-
-<!--div class = "col-xs-6 col-sm-4" style = "background-color: #F8FAFC; padding-top: 2rem; padding-left: 0.5rem; padding-right: 0.5rem; float: left;">
-    <div class = "col-xs-6 col-sm-5">
-        <p class = "a infor single"><span class="glyphicon glyphicon-user"/> 5人：9人</p>
-        <p class = "a infor single"><span class="glyphicon glyphicon-home"/> 小剧场B座302</p>
-        <p class = "a infor single"><span class="glyphicon glyphicon-time"/> 9月16日14:15</p>
-    </div>
-    <div style = "float:right;">
-        <table border="0" cellpadding="0" cellspacing="0">
-        <tr>
-        <td class = "tag" id = "interviewee1" style = "background-image: url(icon/创设.png);" href = "报名表" onmouseenter="choseButton(0)" onmouseleave ="onButton = false; hidemenu()">
-        <p class = "vertical">金 &nbsp 旻</p>
-        </td>
-        <td class = "tag" id = "interviewee2" style = "background-image: url(icon/发服.png);" href = "报名表"; onmouseenter="choseButton(1)" onmouseleave ="onButton = false; hidemenu()">
-        <p class = "vertical">章 &nbsp 晗</p>
-
-        </td>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/主办.png);">
-        <p class = "vertical">翁 &nbsp 昕</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/人资.png);">
-        <p class = "vertical">余柯贝</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/活动.png);">
-        <p class = "vertical">黎一博</p>
-        </td>
-        </tr>
-        </table>
-    </div>
-
-    <div style = "float:right; ">
-        <table border="0" cellpadding="0" cellspacing="0" style = "padding-left: 1rem">
-        <tr>
-        <td class = "tag" id = "interviewer1" style = "background-image: url(icon/女生2.png);" onmouseenter="choseButton(11)" onmouseleave ="onButton = false; hidemenu()">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        </tr>
-        </table>
-    </div>
-</div>
-
-<div class = "col-xs-12 col-sm-4" style = "background-color: white; padding-top: 2rem; padding-left: 0.5rem; padding-right: 0.5rem; float: left;">
-    <div class = "col-xs-5">
-        <p class = "a infor double"><span class="glyphicon glyphicon-home"/> 小剧场B座322</p>
-        <p class = "a infor double"><span class="glyphicon glyphicon-calendar"/> 9月16日</p>
-        <p class = "a infor double"><span class="glyphicon glyphicon-time"/> 14:15-15:00</p>
-    </div>
-    <div style = "float:right;">
-        <table border="0" cellpadding="0" cellspacing="0">
-        <tr>
-        <td class = "tag" style = "background-image: url(icon/创设.png);">
-        <p class = "vertical">金 &nbsp 旻</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/发服.png);">
-        <p class = "vertical">章 &nbsp 晗</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/主办.png);">
-        <p class = "vertical">翁 &nbsp 昕</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/人资.png);">
-        <p class = "vertical">余柯贝</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/活动.png);">
-        <p class = "vertical">黎一博</p>
-        </td>
-        </tr>
-        </table>
-    </div>
-
-    <div style = "float:right; ">
-        <table border="0" cellpadding="0" cellspacing="0">
-        <tr>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        </tr>
-        </table>
-    </div>
-</div>
-
-
-<div class = "col-xs-12 col-sm-4" style = "background-color: #F8FAFC; padding-top: 2rem; padding-left: 0.5rem; padding-right: 0.5rem; float: left;">
-    <div class = "col-xs-5">
-        <p class = "a infor single"><span class="glyphicon glyphicon-home"/> 小剧场B座302</p>
-        <p class = "a infor single"><span class="glyphicon glyphicon-calendar"/> 9月16日</p>
-        <p class = "a infor single"><span class="glyphicon glyphicon-time"/> 14:15-15:00</p>
-    </div>
-    <div style = "float:right;">
-        <table border="0" cellpadding="0" cellspacing="0">
-        <tr>
-        <td class = "tag" style = "background-image: url(icon/创设.png);">
-        <p class = "vertical">金 &nbsp 旻</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/发服.png);">
-        <p class = "vertical">章 &nbsp 晗</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/主办.png);">
-        <p class = "vertical">翁 &nbsp 昕</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/人资.png);">
-        <p class = "vertical">余柯贝</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/活动.png);">
-        <p class = "vertical">黎一博</p>
-        </td>
-        </tr>
-        </table>
-    </div>
-
-    <div style = "float:right; ">
-        <table border="0" cellpadding="0" cellspacing="0" style = "padding-left: 1rem">
-        <tr>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        </tr>
-        </table>
-    </div>
-</div>
-
-<div class = "col-xs-12 col-sm-4" style = "background-color: white; padding-top: 2rem; padding-left: 0.5rem; padding-right: 0.5rem; float: left;">
-    <div class = "col-xs-5">
-        <p class = "a infor double"><span class="glyphicon glyphicon-home"/> 小剧场B座322</p>
-        <p class = "a infor double"><span class="glyphicon glyphicon-calendar"/> 9月16日</p>
-        <p class = "a infor double"><span class="glyphicon glyphicon-time"/> 14:15-15:00</p>
-    </div>
-    <div style = "float:right;">
-        <table border="0" cellpadding="0" cellspacing="0">
-        <tr>
-        <td class = "tag" style = "background-image: url(icon/创设.png);">
-        <p class = "vertical">金 &nbsp 旻</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/发服.png);">
-        <p class = "vertical">章 &nbsp 晗</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/主办.png);">
-        <p class = "vertical">翁 &nbsp 昕</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/人资.png);">
-        <p class = "vertical">余柯贝</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/活动.png);">
-        <p class = "vertical">黎一博</p>
-        </td>
-        </tr>
-        </table>
-    </div>
-
-    <div style = "float:right; ">
-        <table border="0" cellpadding="0" cellspacing="0">
-        <tr>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/男生.png);">
-        <p class = "vertical">小学弟</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        <td class = "tag" style = "background-image: url(icon/女生2.png);">
-        <p class = "vertical">小学妹</p>
-        </td>
-        </tr>
-        </table>
-    </div-->
-</div>
-</body>
-
-<ul id="myMenu" onmouseenter="onMenu = true" onmouseleave="onMenu = false; hidemenu()">
-    <li id = "menuli1">&nbsp</li>
-    <li id = "menuli2" href = "#">&nbsp</li>
-    <li id = "menuli3" href = "#">&nbsp</li>
-    <li id = "menuli4" href = "#">&nbsp</li>
-</ul>
-</div>
-
-<table id="mask"><tr><td id="mask_td"></td></tr></table>
-
-<script type="text/javascript">
      function getElementLeft(element){
 　　　　var actualLeft = element.offsetLeft;
 　　　　var current = element.offsetParent;
@@ -650,6 +382,8 @@ for(var count = 0; count < itvw_num; count++){
         window.onresize = function(){
             H = getElementTop(sidemenu);
             mask.setSize();
+            if(mainPage.offsetLeft < 150)
+                mainPage.style.marginLeft = 150 + "px";
         }
         window.onscroll = function(){setSideMenu();}
     }
@@ -691,60 +425,18 @@ for(var count = 0; count < itvw_num; count++){
                 else {
                     myMenu.style.lineHeight = "2rem";
                     menuli1.innerHTML = "查看" + per_infor.name + "报名表";
-                    menuli1.ondblclick = showMask();
                     form_src = per_infor.form_src;
+                    menuli1.setAttribute("ondblclick", "showMask()");
                     menuli2.innerHTML = "Tel:" + per_infor.tel;
                     menuli3.style.display = "block";
                     menuli3.innerHTML = "第一志愿：" + per_infor.dept1;
                     menuli4.style.display = "block";
                     menuli4.innerHTML = "第二志愿：" + per_infor.dept2;
                 }
-                /*else if(num == '11'){
-                    myMenu.style.top = getElementTop(interviewer1) - document.body.scrollTop + 5 + "px";
-                    myMenu.style.left = getElementLeft(interviewer1)- document.body.scrollLeft - 125 + "px";
-                    document.getElementById("menuli1").innerHTML = "查看小学妹报名表";
-                    form_src = "报名表/回收袋.jpg";
-                    document.getElementById("menuli2").innerHTML = "18867110003";
-                }*/
                 myMenu.style.display = "block";
             }, 1000);
         }
     }
-    /*function showmenu(role, per_sheet, per_infor){
-        var myMenu = document.getElementById("myMenu");
-        var menuli1 = document.getElementById("menuli1");
-        var menuli2 = document.getElementById("menuli2");
-        var menuli3 = document.getElementById("menuli3");
-        var menuli4 = document.getElementById("menuli4");
-        myMenu.style.top = getElementTop(per_sheet) - document.body.scrollTop + 5+ "px";
-        myMenu.style.left = getElementLeft(per_sheet) - document.body.scrollLeft - 125 + "px";
-        if (role == 1){
-            //interviewee1 = document.getElementById("interviewee1");       
-            menuli1.innerHTML = per_infor.name;
-            menuli2.innerHTML = "Tel:" + per_infor.tel;
-            menuli3.style.display = "none";
-            menuli4.style.display = "none";
-        }
-        else {
-            menuli1.innerHTML = "查看" + per_infor.name + "报名表";
-            form_src = per_infor.form_src;
-            menuli2.innerHTML = "Tel:" + per_infor.tel;
-            menuli3.style.display = "block";
-            menuli3.innerHTML = "第一志愿：" + per_infor.dept1;
-            menuli4.style.display = "block";
-            menuli4.innerHTML = "第二志愿：" + per_infor.dept2;
-        }
-        /*else if(num == '11'){
-            myMenu.style.top = getElementTop(interviewer1) - document.body.scrollTop + 5 + "px";
-            myMenu.style.left = getElementLeft(interviewer1)- document.body.scrollLeft - 125 + "px";
-            document.getElementById("menuli1").innerHTML = "查看小学妹报名表";
-            form_src = "报名表/回收袋.jpg";
-            document.getElementById("menuli2").innerHTML = "18867110003";
-        }*/
-        /*myMenu.style.display = "block";
-        //myMenu.style.top = 0.5 + "rem";
-        //myMenu.style.left = -12.8 + "rem";
-    }*/
 
     function hidemenu(){
         clearTimeout(t);
