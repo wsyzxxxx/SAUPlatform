@@ -229,6 +229,10 @@ for(var count = 0; count < itvw_num; count++){
         if(!itvw[count].itvwee[i].main){
             switch(itvw[count].itvwee[i].dept)
             {
+                
+                case '办公室':
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/办办.png);");
+                break; 
                 case '人资':
                 itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/人资.png);");
                 break;
@@ -251,7 +255,7 @@ for(var count = 0; count < itvw_num; count++){
                 itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/合作.png);");
                 break;
                 default:
-                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/办办.png);");
+                itvw[count].interviewee.list[i].sheet.setAttribute("style", "background-image: url(icon/SAU.png);");
                 break;                
             }
         }

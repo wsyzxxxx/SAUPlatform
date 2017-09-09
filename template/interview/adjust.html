@@ -55,7 +55,7 @@
 </div>
 </nav>
 
-<div class = "menu_layout" ID = "sidemenu">
+<div class = "menu_layout" id = "sidemenu">
 <a href="overview.html"><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-eye-open"/> 面试概览</p></a>
 <a href="input.html"><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-pencil"/> 信息录入</p></a>
 <a href="arrange.html"><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-list-alt"/> 场次安排</p></a>
@@ -68,5 +68,40 @@
 
 </div>
 </body>
+
+<script type="text/javascript">
+function getElementTop(element){
+　　　　var actualTop = element.offsetTop;
+　　　　var current = element.offsetParent;
+　　　　while (current != null){
+　　　　　　actualTop += current.offsetTop;
+　　　　　　current = current.offsetParent;
+　　　　}
+　　　　return actualTop;
+　　}
+
+window.onload =
+    function(){
+        document.getElementById('interviewee').innerHTML = "面试官人数：" + itvw.itvwee_num + "人";
+        document.getElementById('interviewer').innerHTML = "面试者人数：" + itvw.itvwer_num + "人";
+        document.getElementById('interview').innerHTML = "面试场次数：" + itvw.itvw_num + "人";
+        document.getElementById('progress').innerHTML = "面试进程&nbsp &nbsp：" + itvw.itvw_done_num +"/" +itvw.itvw_num;
+        H = getElementTop(sidemenu);
+        window.onresize = function(){
+            H = getElementTop(sidemenu);
+            if(mainPage.offsetLeft < 150)
+                mainPage.style.marginLeft = 150 + "px";
+        }
+        window.onscroll = function(){
+            var s = document.body.scrollTop || document.documentElement.scrollTop;
+            if(s>H) {
+                sidemenu.style = "position:fixed;top:0;";
+            }
+            else {
+                sidemenu.style = "position:absolute;";
+            }
+        }
+    }
+    </script>
 
 </html>

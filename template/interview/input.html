@@ -7,6 +7,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="../icon/logo.png" media="screen" />
     <link rel="stylesheet" type="text/css" href="../menusheet.css" />
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style type="text/css">
         p.notice{
              background-color: white;
@@ -17,12 +20,30 @@
              margin: 1px 0px;
         }
         a:hover{text-decoration: none;}
+        .box{
+            padding: 2rem;
+            height: 52rem;
+            background-color: whiteSmoke;
+            margin: 0% 4%;
+        }
+        p.title{
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .input_button{
+            background-color: white;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            line-height: 5rem;
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 
-<body style = "padding-top: 5rem;">
+<body>
 
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style = "line-height: 1rem;">
+<nav class="navbar navbar-default" role="navigation" style = "line-height: 1rem; margin: 0rem;">
 <div class="container-fluid" > 
     <div class="navbar-text" style = "font-size: 1.7rem; margin-left: 45%;">
          <p>SAU面试场次自动安排系统</p>
@@ -34,18 +55,356 @@
 </div>
 </nav>
 
-<div class = "menu_layout">
+<div class = "menu_layout" id = "sidemenu">
 <a href="overview.html"><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-eye-open"/> 面试概览</p></a>
 <a href="input.html"><p class = "menu chosen" style="line-height: 12rem;"><span class="glyphicon glyphicon-pencil"/> 信息录入</p></a>
 <a href="arrange.html"><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-list-alt"/> 场次安排</p></a>
 <a href="adjust.html" ><p class = "menu" style="line-height: 12rem;"><span class="glyphicon glyphicon-refresh"/> 批量调整</p></a>
 </div>
 
-<div class = "content"  style = "background-color:whiteSmoke">
+<div class = "content"  style = "padding: 5rem; padding-bottom: 0rem;" id = "mainPage">
 
+<div class="panel panel-default col-xs-12 col-sm-3 box">
+    <div class="panel-body title">
+        <p class = "title">
+        面试场次信息录入
+        </p>
+    </div>
+    <p align="center"><img src = "icon/interview.png" style = "width: 65%; padding-bottom: 21%; padding-top: 6%;"/></p>
+    <button type="button" class="btn btn-default col-sm-12 input_button" data-toggle="modal" data-target="#singleItvw">
+        <div class = "col-xs-10">
+        单个录入场次信息
+        </div>
+        <span class="glyphicon glyphicon-plus "></span>
+    </button>
+    <button type="button" class="btn btn-default col-sm-12 input_button" data-toggle="modal" data-target="#massItvw">
+        <div class = "col-xs-10">
+        批量录入场次信息
+        </div>
+        <span class="glyphicon glyphicon-plus "></span>
+    </button>
+</div>
 
+<div class="panel panel-default col-xs-12 col-sm-3 box">
+    <div class="panel-body">
+        <p class = "title">
+        面试官信息录入
+        </p>
+    </div>
+    <p align="center"><img src = "icon/interviewee.png" style = "width: 60%; padding-bottom: 15%;"/></p>
+    <button type="button" class="btn btn-default col-sm-12 input_button" data-toggle="modal" data-target="#singleItvwee">
+        <div class = "col-xs-10">
+        单个录入面试官信息
+        </div>
+        <span class="glyphicon glyphicon-plus "></span>
+    </button>
+    <button type="button" class="btn btn-default col-sm-12 input_button" data-toggle="modal" data-target="#massItvwee">
+        <div class = "col-xs-10">
+        批量录入面试官信息
+        </div>
+        <span class="glyphicon glyphicon-plus "></span>
+    </button>
+</div>
+
+<div class="panel panel-default col-xs-12 col-sm-3 box">
+    <div class="panel-body title">
+        <p class = "title">
+        面试者信息录入
+        </p>
+    </div>
+    <p align="center"><img src = "icon/interviewer.png" style = "width: 60%; padding-bottom: 15%;"/></p>
+    <button type="button" class="btn btn-default col-sm-12 input_button" data-toggle="modal" data-target="#singleItvwer">
+        <div class = "col-xs-10">
+        单个录入面试者信息
+        </div>
+        <span class="glyphicon glyphicon-plus "></span>
+    </button>
+    <button type="button" class="btn btn-default col-sm-12 input_button" data-toggle="modal" data-target="#massItvwer">
+        <div class = "col-xs-10">
+        批量录入面试者信息
+        </div>
+        <span class="glyphicon glyphicon-plus "></span>
+    </button>
+</div>
+
+<div class = "col-xs-0 col-sm-3"></div>
+<button class="btn btn-primary col-xs-12 col-sm-6" style = "background-color: dodgerblue; height: 5rem; margin-top: 4rem; font-size: 1.5rem;" href = "../../interview/arrange.py">
+开始排班
+</button>
 
 </div>
+
+<div class="modal fade" id="singleItvw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">&nbsp&nbsp单个录入场次信息</h4>
+            </div>
+            <form action = "../../interview/get_single_itvwee.py" method="POST">
+            <div class="modal-body" style = "font-size: 1.4rem; padding: 1rem 3rem;">
+                <div style="width: 60%;">
+                    <input class = "form-control" placeholder = "地点" id = "itvw_loca" style = "margin: 1rem 0rem;">
+                    <div class = "input-group" style = "margin: 1rem 0rem;">
+                        <span class="input-group-addon" style = "background-color: white;">日期</span>
+                        <input class = "form-control" placeholder = "日期" type = "date" id = "itvwee_id" >
+                    </div>
+                    <div class = "input-group" style = "margin: 1rem 0rem;">
+                        <span class="input-group-addon" style = "background-color: white;">时间</span>
+                        <input class = "form-control" placeholder = "时间" type = "time" id = "itvwee_id">
+                    </div>
+                    <div class = "input-group" style = "margin: 1rem 0rem;">
+                    <span class="input-group-addon" style = "background-color: white;">预期面试官人数（上下浮动2人)</span>
+                    <select class="form-control" id = "itvwee_num">
+                        <option value = "1">1</option>
+                        <option value = "2">2</option>
+                        <option value = "3">3</option>
+                        <option value = "4">4</option>
+                        <option value = "5" selected = "selected">5</option>
+                        <option value = "7">6</option>
+                        <option value = "8">7</option>
+                        <option value = "8">8</option>
+                        <option value = "9">9</option>
+                        <option value = "10">10</option>
+                    </select>
+                    </div>
+
+                    <div class = "input-group" style = "margin: 1rem 0rem;">
+                    <span class="input-group-addon" style = "background-color: white;">预期面试者人数（上下浮动2人)</span>
+                    <select class="form-control" id = "itvwer_num">
+                        <option value = "1">1</option>
+                        <option value = "2">2</option>
+                        <option value = "3">3</option>
+                        <option value = "4">4</option>
+                        <option value = "5">5</option>
+                        <option value = "7">6</option>
+                        <option value = "8">7</option>
+                        <option value = "8" selected = "selected">8</option>
+                        <option value = "9">9</option>
+                        <option value = "11">10</option>
+                        <option value = "12">10</option>
+                        <option value = "13">10</option>
+                        <option value = "14">10</option>
+                        <option value = "15">10</option>
+                        <option value = "16">10</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style= "width: 8rem;">关闭</button>
+                <button type="submit" class="btn btn-primary" style = "background-color: dodgerblue; width: 8rem;">提交</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="massItvw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">&nbsp&nbsp批量录入场次信息</h4>
+            </div>
+            <div class="modal-body">
+            <form action = "../../interview/get_mass_itvw.py" method="POST"-->
+            <div class="modal-body" style = "font-size: 1.4rem; padding: 3rem;">
+                <p><button onclick="Download_temp('temp/interview.xlsx'); return false;">下载模板</button>&nbsp下载并填写模板</p>
+                <input type="file" id = "interview_file"/>
+                <p style = "color: grey; padding-top: 2rem;">*本系统将根据模板格式录入面试场次信息</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style= "width: 8rem;">关闭</button>
+                <button type="submit" class="btn btn-primary" style = "background-color: dodgerblue; width: 8rem;">提交</button>
+            </div>
+            <form/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="singleItvwee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">&nbsp&nbsp单个录入面试官信息</h4>
+            </div>
+            <form action = "../../interview/get_single_itvwee.py" method="POST">
+            <div class="modal-body" style = "font-size: 1.4rem; padding: 3rem;">
+                    <div style="width: 60%;">
+                    <input class = "form-control" placeholder = "姓名" id = "itvwee_name" style = "margin: 1rem 0rem;">
+                    <input class = "form-control" placeholder = "学号" id = "itvwee_id" style = "margin: 1rem 0rem;">
+                    <select class="form-control" id = "itvwee_dept" style = "margin: 1rem 0rem;" onblur = "if(itvwee_dept.value == 'none') itvwee_dept.focus();">
+                        <option value = "none" selected="selected">部门（请选择）</option>
+                        <option value = "办公室">办公室</option>
+                        <option value = "创设">创意与设计中心</option>
+                        <option value = "发服">发展与服务中心</option>
+                        <option value = "合作">合作与交流中心</option>
+                        <option value = "活动">活动认证中心</option>
+                        <option value = "媒体">媒体运营中心</option>
+                        <option value = "人资">人力资源中心</option>
+                        <option value = "文策">文艺与策划中心</option>
+                        <option value = "注册">注册与信息中心</option>
+                        <option value = "主席团">主席团</option>
+                    </select>
+                    <input class = "form-control" id = "itvwee_tele" placeholder="电话号码"  style = "margin: 1rem 0rem;">
+                    <select class="form-control" multiple="multiple" id = "itvwee_time"  style = "margin: 1rem 0rem;">
+                        <option value = "none">空闲时间（请选择）</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" style = "background-color: dodgerblue;">提交</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="massItvwee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">&nbsp&nbsp批量录入面试官信息</h4>
+            </div>
+            <form action = "../../interview/get_mass_itvwee.py" method="POST">
+            <div class="modal-body" style = "font-size: 1.4rem; padding: 3rem;">
+                <p><button onclick="Download_temp('temp/interviewee.xlsx'); return false;">下载模板</button>&nbsp下载并填写模板</p>
+                <input type="file" id = "interviewee_file"/>
+                <p style = "color: grey; padding-top: 2rem;">*本系统将根据模板格式录入面试官信息</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style= "width: 8rem;">关闭</button>
+                <button type="submit" class="btn btn-primary" style = "background-color: dodgerblue; width: 8rem;">提交</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="singleItvwer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">&nbsp&nbsp单个录入面试者信息</h4>
+            </div>
+            <form action = "../../interview/get_single_itvwee.py" method="POST">
+            <div class="modal-body" style = "font-size: 1.4rem; padding: 3rem;">
+                    <div style="width: 60%;">
+                    <input class = "form-control" placeholder = "姓名" id = "itvwer_name" style = "margin: 1rem 0rem;">
+                    <input class = "form-control" placeholder = "学号" id = "itvwer_id" style = "margin: 1rem 0rem;">
+                    <select class="form-control" id = "itvwee_gend" style = "margin: 1rem 0rem;" onblur = "if(itvwer_gend.value == 'none') itvwer_gend.focus();">
+                        <option value = "none" selected="selected" >性别（请选择）</option>
+                        <option value = "f">女生</option>
+                        <option value = "m">男生</option>
+                    </select>
+
+                    <select class="form-control" id = "itvwer_dept1" style = "margin: 1rem 0rem;" onblur = "if(itvwer_dept1.value == 'none') itvwer_dept1.focus();">
+                        <option value = "none" selected="selected">第一志愿（请选择）</option>
+                        <option value = "办公室">办公室</option>
+                        <option value = "创设">创意与设计中心</option>
+                        <option value = "发服">发展与服务中心</option>
+                        <option value = "合作">合作与交流中心</option>
+                        <option value = "活动">活动认证中心</option>
+                        <option value = "媒体">媒体运营中心</option>
+                        <option value = "人资">人力资源中心</option>
+                        <option value = "文策">文艺与策划中心</option>
+                        <option value = "注册">注册与信息中心</option>
+                        <option value = "主席团">主席团</option>
+                    </select>
+
+                    <select class="form-control" id = "itvwee_dept" style = "margin: 1rem 0rem;" >
+                        <option value = "none" selected="selected">第二志愿（请选择）</option>
+                        <option value = "办公室">办公室</option>
+                        <option value = "创设">创意与设计中心</option>
+                        <option value = "发服">发展与服务中心</option>
+                        <option value = "合作">合作与交流中心</option>
+                        <option value = "活动">活动认证中心</option>
+                        <option value = "媒体">媒体运营中心</option>
+                        <option value = "人资">人力资源中心</option>
+                        <option value = "文策">文艺与策划中心</option>
+                        <option value = "注册">注册与信息中心</option>
+                        <option value = "主席团">主席团</option>
+                    </select>
+                    <input class = "form-control" id = "itvwee_tele" placeholder="电话号码"  style = "margin: 1rem 0rem;">
+                    <select class="form-control" multiple="multiple" id = "itvwee_time"  style = "margin: 1rem 0rem;">
+                        <option value = "none">空闲时间（请选择）</option>
+                    </select>
+                    <hr/>
+                    <p>选择面试者报名表:<input type = "file" id = "itvwer_form" style = "padding-top: 1.5rem;" ></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" class="btn btn-primary" style = "background-color: dodgerblue;">提交</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="massItvwer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">&nbsp&nbsp批量录入面试者信息</h4>
+            </div>
+            <form action = "../../interview/get_mass_itvwer.py" method="POST">
+            <div class="modal-body" style = "font-size: 1.4rem; padding: 3rem;">
+                <p><button onclick="Download_temp('temp/interviewer.xlsx'); return false;">下载模板</button>&nbsp下载并填写模板</p>
+                <input type="file" id = "interviewer_file"/>
+                <p style = "color: grey; padding-top: 2rem;">*本系统将根据模板格式录入面试者信息</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style= "width: 8rem;">关闭</button>
+                <button type="submit" class="btn btn-primary" style = "background-color: dodgerblue; width: 8rem;">提交</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
 
+<script type="text/javascript">
+function getElementTop(element){
+　　　　var actualTop = element.offsetTop;
+　　　　var current = element.offsetParent;
+　　　　while (current != null){
+　　　　　　actualTop += current.offsetTop;
+　　　　　　current = current.offsetParent;
+　　　　}
+　　　　return actualTop;
+　　}
+
+window.onload =
+    function(){
+        H = getElementTop(sidemenu);
+        window.onresize = function(){
+            H = getElementTop(sidemenu);
+            if(mainPage.offsetLeft < 150)
+                mainPage.style.marginLeft = 150 + "px";
+        }
+        window.onscroll = function(){
+            var s = document.body.scrollTop || document.documentElement.scrollTop;
+            if(s>H) {
+                sidemenu.style = "position:fixed;top:0;";
+            }
+            else {
+                sidemenu.style = "position:absolute;";
+            }
+        }
+    }
+
+function Download_temp(src){
+     window.location.href = src;
+}
+    </script>
+}
 </html>
